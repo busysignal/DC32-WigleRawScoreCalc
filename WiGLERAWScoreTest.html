@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raw Score Calculator</title>
+    <script>
+        function calculateRawScore() {
+            let startingQuadWiFi = parseFloat(document.getElementById('startingQuadWiFi').value);
+            let newWiFi = parseFloat(document.getElementById('newWiFi').value);
+            let foxFoundRatio = parseFloat(document.getElementById('foxFoundRatio').value);
+
+            if (isNaN(startingQuadWiFi) || isNaN(newWiFi) || isNaN(foxFoundRatio)) {
+                alert("Please enter valid numbers for all fields.");
+                return;
+            }
+
+            let quadFoundInceptionRatio = newWiFi / startingQuadWiFi;
+            let rawScore = quadFoundInceptionRatio * (1 + foxFoundRatio);
+
+            document.getElementById('rawScore').textContent = 'Raw Score: ' + rawScore.toFixed(2);
+            document.getElementById('wifiRatio').textContent = 'New WiFi Ratio: ' + quadFoundInceptionRatio.toFixed(2);
+        }
+    </script>
+</head>
+<body>
+    <h1>Raw Score Calculator</h1>
+    <form onsubmit="event.preventDefault(); calculateRawScore();">
+        <label for="startingQuadWiFi">Starting Quad WiFi:</label>
+        <input type="number" id="startingQuadWiFi" step="0.01" required><br><br>
+        
+        <label for="newWiFi">New WiFi:</label>
+        <input type="number" id="newWiFi" step="0.01" required><br><br>
+
+        <label for="foxFoundRatio">Fox Found Ratio:</label>
+        <input type="number" id="foxFoundRatio" step="0.01" required><br><br>
+
+        <button type="submit">Calculate</button>
+    </form>
+    <p id="rawScore">Raw Score: </p>
+    <p id="wifiRatio">New WiFi Ratio: </p>
+</body>
+</html>
